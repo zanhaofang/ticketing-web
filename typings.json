@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "reqwest": "github:nozzlegear/reqwest.d.ts"
+  }
+}

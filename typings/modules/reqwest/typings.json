@@ -1,0 +1,9 @@
+{
+  "resolution": "main",
+  "tree": {
+    "src": "https://raw.githubusercontent.com/nozzlegear/reqwest.d.ts/master/typings.json",
+    "raw": "github:nozzlegear/reqwest.d.ts",
+    "main": "reqwest.d.ts",
+    "name": "reqwest"
+  }
+}
