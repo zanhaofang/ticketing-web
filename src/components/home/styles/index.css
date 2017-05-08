@@ -1,0 +1,24 @@
+.tk-searchbar {
+  margin-bottom: 0px;
+}
+
+.tk-carousel {
+  background: #fff;
+}
+.tk-carousel a {
+  display: inline-block;
+  width: 100%;
+  margin: 0; padding: 0;
+}
+.tk-carousel a img {
+  width: 100%;
+  vertical-align: top;
+}
+
+.tk-carousel .slider-decorator-0 {
+  bottom: 12px!important;
+}
+
+.am-card-header-content {
+  flex: initial
+}

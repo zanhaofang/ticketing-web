@@ -22,7 +22,7 @@ module.exports = {
 
     module: {
         rules: [
-            { test: /\.tsx?$/, exclude: /node_modules/, use: ["babel-loader", "awesome-typescript-loader"] },
+            { test: /\.tsx?$/, exclude: /node_modules/, use: ["babel-loader"] },
             { test: /\.css$/, use: [ "style-loader", "css-loader" ] },
             { test: /\.(svg)$/i, use: "svg-sprite-loader", include: svgDirs },  // 把 svgDirs 路径下的所有 svg 文件交给 svg-sprite-loader 插件处理
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
