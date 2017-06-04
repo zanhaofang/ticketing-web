@@ -22,29 +22,30 @@ function* getData(data, apiFn, field: string, params = {}) {
 /**
  * 获取今日上映列表
  */
-function* loadToday(cityId: number) {
+function* loadToday() {
   // cache
-  const data = yield select(selectors.getToday, cityId);
+  const data = yield select(selectors.getToday);
   if (data.length <= 0) {
-    const today = actions.today;
-    const getToday = getData.bind(null, today, api.getToday)
-    yield call(getToday, 'todayMovies', { cityId });
+    const today = actions.movieList;
+    const getMovieList = getData.bind(null, today, api.getMovieList)
+    yield call(getMovieList, 'movieList');
+    
   }
 }
 
 
 /******************************* WATCHERS *************************************/
 
-function* watchLoadTodayMovie() {
+function* watchLoadMovieList() {
   while(true) {
-    const { cityId } = yield take(actions.LOAD_TODAY_MOVIE);
-    yield fork(loadToday, cityId);
+    yield take(actions.LOAD_MOVIE_LIST);
+    yield fork(loadToday);
   }
 }
 
 
 export default function* root() {
   yield [
-    fork(watchLoadTodayMovie)
+    fork(watchLoadMovieList)
   ]
 }

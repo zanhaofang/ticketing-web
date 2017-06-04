@@ -1,19 +1,18 @@
 import { connect } from 'react-redux';
 import { Home } from '../components/home';
 import * as React from 'react';
-import { loadTodayMovie } from '../actions';
+import { loadMovieList } from '../actions';
 
 export interface HomePageProps {
-  cityId: number,
   carouselImages: Array<string>;
   todayMovies: Array<any>;
-  loadTodayMovie: Function;
+  loadMovieList: Function;
 }
 
 class HomePage extends React.Component<HomePageProps, any> {
 
   componentDidMount() {
-    this.props.loadTodayMovie(this.props.cityId);
+    this.props.loadMovieList();
   }
 
   render() {
@@ -27,14 +26,13 @@ class HomePage extends React.Component<HomePageProps, any> {
 
 function mapStateToProps(state) {
   const {
-    data: { cityId, carouselImages, todayMovies }
+    data: { carouselImages, todayMovies }
   } = state
 
   return {
-    cityId,
     carouselImages,
     todayMovies
   }
 }
 
-export default connect(mapStateToProps, { loadTodayMovie })(HomePage);
+export default connect(mapStateToProps, { loadMovieList })(HomePage);

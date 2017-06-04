@@ -1,7 +1,13 @@
 import request from '../utils/request';
 
-export const getToday = (params) => {
+export const getMovieList = (params) => {
   return request({
-    url: `movie/today/${params.cityId}`
+    url: `api/movie`
   });
 };
+
+export const getMovieDetail = (params) => {
+  return request({
+    url: `api/movie/${params.movieId}`
+  })
+}
