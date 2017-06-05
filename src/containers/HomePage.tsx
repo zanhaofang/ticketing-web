@@ -1,11 +1,13 @@
 import { connect } from 'react-redux';
-import { Home } from '../components/home';
 import * as React from 'react';
+import { NavBar, SearchBar } from 'antd-mobile';
 import { loadMovieList } from '../actions';
+import { MovieList, MovieCarousel } from '../components/home';
+
 
 export interface HomePageProps {
   carouselImages: Array<string>;
-  todayMovies: Array<any>;
+  movieList: Array<any>;
   loadMovieList: Function;
 }
 
@@ -16,9 +18,14 @@ class HomePage extends React.Component<HomePageProps, any> {
   }
 
   render() {
-    const { carouselImages, todayMovies } = this.props;
+    const { carouselImages, movieList } = this.props;
     return (
-      <Home carouselImages={carouselImages} movies={todayMovies} />
+      <div>
+        <NavBar iconName={null} leftContent="城市" onLeftClick={() => console.log('onLeftClick')}>热映</NavBar>
+        <SearchBar className="tk-searchbar" placeholder="搜索" style={{marginBottom: 0}}/>
+        <MovieCarousel carouselImages={carouselImages}></MovieCarousel>
+        <MovieList movies={movieList} />
+      </div>
     )
   }
 }
@@ -26,12 +33,12 @@ class HomePage extends React.Component<HomePageProps, any> {
 
 function mapStateToProps(state) {
   const {
-    data: { carouselImages, todayMovies }
+    data: { carouselImages, movieList }
   } = state
 
   return {
     carouselImages,
-    todayMovies
+    movieList
   }
 }
 

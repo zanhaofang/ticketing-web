@@ -1,1 +1,1 @@
-export const getToday = (state) => state.data.todayMovies;
+export const getMovieList = (state) => state.data.movieList;

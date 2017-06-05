@@ -22,12 +22,12 @@ function* getData(data, apiFn, field: string, params = {}) {
 /**
  * 获取今日上映列表
  */
-function* loadToday() {
+function* loadMovieList() {
   // cache
-  const data = yield select(selectors.getToday);
+  const data = yield select(selectors.getMovieList);
   if (data.length <= 0) {
-    const today = actions.movieList;
-    const getMovieList = getData.bind(null, today, api.getMovieList)
+    const moveListAction = actions.movieList;
+    const getMovieList = getData.bind(null, moveListAction, api.getMovieList)
     yield call(getMovieList, 'movieList');
     
   }
@@ -39,7 +39,7 @@ function* loadToday() {
 function* watchLoadMovieList() {
   while(true) {
     yield take(actions.LOAD_MOVIE_LIST);
-    yield fork(loadToday);
+    yield fork(loadMovieList);
   }
 }
 
