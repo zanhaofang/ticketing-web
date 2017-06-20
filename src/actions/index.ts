@@ -28,6 +28,7 @@ function action(type: string, payload: any = {}) {
 
 
 
+// 首页电影列表
 export const LOAD_MOVIE_LIST: string = 'LOAD_MOVIE_LIST';
 
 export const loadMovieList = () => action(LOAD_MOVIE_LIST);
@@ -39,3 +40,8 @@ export const movieList = {
   success: (params, response, field) => action(MOVIE_LIST.SUCCESS, { params, response, field }),
   failure: (params, error) => action(MOVIE_LIST.FAILURE, { params, error }),
 }
+
+// 跳转电影详情页
+export const TO_MOVIE_DETAIL: string = 'TO_MOVIE_DETAIL';
+
+export const toMovieDetail = () => action(TO_MOVIE_DETAIL);
