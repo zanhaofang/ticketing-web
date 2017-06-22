@@ -41,7 +41,15 @@ export const movieList = {
   failure: (params, error) => action(MOVIE_LIST.FAILURE, { params, error }),
 }
 
-// 跳转电影详情页
-export const TO_MOVIE_DETAIL: string = 'TO_MOVIE_DETAIL';
+// 电影详情页
+export const LOAD_MOVIE_DETAIL: string = 'LOAD_MOVIE_DETAIL';
 
-export const toMovieDetail = () => action(TO_MOVIE_DETAIL);
+export const loadMovieDetail = (id: number) => action(LOAD_MOVIE_DETAIL, { id });
+
+const MOVIE_DETAIL: RequestTypes = createRequestTypes('MOVIE_DETAIL');
+
+export const movieDetail = {
+  request: (params) => action(MOVIE_DETAIL.REQUEST, { params }),
+  success: (params, response, field) => action(MOVIE_DETAIL.SUCCESS, { params, response, field }),
+  failure: (params, error) => action(MOVIE_DETAIL.FAILURE, { params, error }),
+}

@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 import * as React from 'react';
 import { NavBar, SearchBar } from 'antd-mobile';
 import { loadMovieList } from '../actions';
@@ -9,6 +10,7 @@ export interface HomePageProps {
   carouselImages: Array<string>;
   movieList: Array<any>;
   loadMovieList: Function;
+  push: Function;
 }
 
 class HomePage extends React.Component<HomePageProps, any> {
@@ -24,7 +26,7 @@ class HomePage extends React.Component<HomePageProps, any> {
         <NavBar iconName={null} leftContent="城市" onLeftClick={() => console.log('onLeftClick')}>热映</NavBar>
         <SearchBar className="tk-searchbar" placeholder="搜索" style={{marginBottom: 0}}/>
         <MovieCarousel carouselImages={carouselImages}></MovieCarousel>
-        <MovieList movies={movieList} />
+        <MovieList movies={movieList} push={this.props.push} />
       </div>
     )
   }
@@ -42,4 +44,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { loadMovieList })(HomePage);
+export default connect(mapStateToProps, { loadMovieList, push })(HomePage);

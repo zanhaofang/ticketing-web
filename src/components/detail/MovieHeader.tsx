@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { NavBar, Icon, Card, SearchBar, Carousel } from 'antd-mobile';
 
 
 export interface MovieHeaderProps {

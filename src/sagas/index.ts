@@ -27,9 +27,21 @@ function* loadMovieList() {
   const data = yield select(selectors.getMovieList);
   if (data.length <= 0) {
     const moveListAction = actions.movieList;
-    const getMovieList = getData.bind(null, moveListAction, api.getMovieList)
+    const getMovieList = getData.bind(null, moveListAction, api.getMovieList);
     yield call(getMovieList, 'movieList');
     
+  }
+}
+
+/**
+ * 电影详情
+ */
+function* loadMovieDetail(id: number) {
+  const data = yield select(selectors.getMovieDetail);
+  if (data == null) {
+    const movieDetailAction = actions.movieDetail;
+    const getMovieDetail = getData.bind(null, movieDetailAction, api.getMovieDetail);
+    yield call(getMovieDetail, 'movieDetail');
   }
 }
 
@@ -44,8 +56,17 @@ function* watchLoadMovieList() {
 }
 
 
+function* watchLoadMovieDetail() {
+  while(true) {
+    const { id } = yield take(actions.LOAD_MOVIE_DETAIL);
+    yield fork(loadMovieDetail, id);
+  }
+}
+
 export default function* root() {
   yield [
-    fork(watchLoadMovieList)
+    fork(watchLoadMovieList),
+    fork(watchLoadMovieDetail)
   ]
 }
+

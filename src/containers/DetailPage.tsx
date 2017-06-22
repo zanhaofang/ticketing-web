@@ -1,33 +1,43 @@
 import { connect } from 'react-redux';
-import MovieHeader from '../components/detail/MovieHeader';
+import { NavBar } from 'antd-mobile';
+import { loadMovieDetail } from '../actions';
+import { MovieHeader } from '../components/detail/MovieHeader';
+
 import * as React from 'react';
-import '../components/detail/styles/index.css';
+import '../components/detail/styles/index.sass';
 
 export interface DetailPageProps {
-  movieId: number
+  id: number,
+  loadMovieDetail: Function,
 }
 
 class DetailPage extends React.Component<DetailPageProps, any> {
 
+  componentDidMount() {
+    this.props.loadMovieDetail(this.props.id);
+  }
 
   render() {
-    const { movieId } = this.props;
+    const { id } = this.props;
     return (
-      // <MovieHeader detail=""></MovieHeader>
-      <div>Detail</div>
+      <div id="detail-page">
+        <NavBar iconName={null}>movieName</NavBar>
+        <MovieHeader detail={10} />
+      </div>
     )
   }
 }
 
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
+
   const {
     data: { movieId }
   } = state
 
   return {
-    movieId
+    id: ownProps.match.params.id,
   }
 }
 
-export default connect(mapStateToProps)(DetailPage);
+export default connect(mapStateToProps, { loadMovieDetail })(DetailPage);
