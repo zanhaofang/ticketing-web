@@ -2,13 +2,13 @@ import * as actions from '../actions';
 import { combineReducers } from 'redux';
 
 const defaultDataState = {
-  cityId: 1,
   carouselImages: ['AiyWuByWklrrUDlFignR', 'TekJlZRVCjLFexlOCuWn'],
-  todayMovies: []
+  movieList: [],
+  movieDetail: null,
 }
 
 /**
- * 如 action 中包含 response 和 field, 更新 state.data[field]
+ * 如 action 中包含 response 和 field, 更新 state[field]
  */
 function data(state = defaultDataState, action) {
   console.log(action);

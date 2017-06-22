@@ -1,4 +1,9 @@
+import { MovieList, MovieListProps } from './MovieList';
+import { MovieCarousel, MovieCarouselProps } from './MovieCarousel';
+
 export {
-  Home,
-  HomeProps
-} from './Home';
+  MovieList,
+  MovieListProps,
+  MovieCarousel,
+  MovieCarouselProps
+}

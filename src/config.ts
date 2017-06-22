@@ -1,5 +1,5 @@
 const config = {
-  domain: "http://localhost:3000/",
+  domain: "http://movie.kaocat.com/",
 }
 
 export default config;

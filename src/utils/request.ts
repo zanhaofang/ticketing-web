@@ -34,6 +34,7 @@ export default (options: reqwest.ReqwestOptions) => {
     reqwest(options)
       .then(resp => {
         Toast.hide();
+        console.log(resp);
         if (resp.code != 0) {
           Toast.fail('加载失败', 1);
           if (error) return reject(error(resp));

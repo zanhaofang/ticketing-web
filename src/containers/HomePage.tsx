@@ -1,25 +1,33 @@
 import { connect } from 'react-redux';
-import { Home } from '../components/home';
+import { push } from 'react-router-redux';
 import * as React from 'react';
-import { loadTodayMovie } from '../actions';
+import { NavBar, SearchBar } from 'antd-mobile';
+import { loadMovieList } from '../actions';
+import { MovieList, MovieCarousel } from '../components/home';
+
 
 export interface HomePageProps {
-  cityId: number,
   carouselImages: Array<string>;
-  todayMovies: Array<any>;
-  loadTodayMovie: Function;
+  movieList: Array<any>;
+  loadMovieList: Function;
+  push: Function;
 }
 
 class HomePage extends React.Component<HomePageProps, any> {
 
   componentDidMount() {
-    this.props.loadTodayMovie(this.props.cityId);
+    this.props.loadMovieList();
   }
 
   render() {
-    const { carouselImages, todayMovies } = this.props;
+    const { carouselImages, movieList } = this.props;
     return (
-      <Home carouselImages={carouselImages} movies={todayMovies} />
+      <div>
+        <NavBar iconName={null} leftContent="城市" onLeftClick={() => console.log('onLeftClick')}>热映</NavBar>
+        <SearchBar className="tk-searchbar" placeholder="搜索" style={{marginBottom: 0}}/>
+        <MovieCarousel carouselImages={carouselImages}></MovieCarousel>
+        <MovieList movies={movieList} push={this.props.push} />
+      </div>
     )
   }
 }
@@ -27,14 +35,13 @@ class HomePage extends React.Component<HomePageProps, any> {
 
 function mapStateToProps(state) {
   const {
-    data: { cityId, carouselImages, todayMovies }
+    data: { carouselImages, movieList }
   } = state
 
   return {
-    cityId,
     carouselImages,
-    todayMovies
+    movieList
   }
 }
 
-export default connect(mapStateToProps, { loadTodayMovie })(HomePage);
+export default connect(mapStateToProps, { loadMovieList, push })(HomePage);

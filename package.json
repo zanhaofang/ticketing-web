@@ -15,8 +15,10 @@
     "@types/react-router-dom": "^4.0.4",
     "@types/redux": "^3.6.0",
     "@types/redux-saga": "^0.10.5",
-    "antd-mobile": "^1.1.0",
+    "antd-mobile": "^1.2.0",
     "css-loader": "^0.28.1",
+    "node-sass": "^4.5.3",
+    "postcss-pxtorem": "^4.0.1",
     "prop-types": "^15.5.8",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
@@ -27,6 +29,7 @@
     "redux-saga": "^0.14.7",
     "regenerator": "^0.9.7",
     "reqwest": "^2.0.5",
+    "sass-loader": "^6.0.5",
     "style-loader": "^0.17.0"
   },
   "devDependencies": {
