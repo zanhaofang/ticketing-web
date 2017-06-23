@@ -7,24 +7,27 @@ export interface MovieHeaderProps {
 
 export const MovieHeader = (props: MovieHeaderProps) => {
   const { detail } = props;
-  
+
   return (
-    <div className="movie-header">
+    <section className="movie-header">
       <div className="movie">
-        <div className="movie-background"></div>
+        <div className="movie-background" style={{backgroundImage: `url(${detail.img})`}}></div>
         <div className="movie-filter"></div>
         <div className="movie-container">
-          <div className="movie-cover"></div>
+          <div className="movie-cover">
+            <img src={ detail.img } alt="海报"/>
+          </div>
           <div className="movie-content">
-            <div className="movie-name text-ellipsis"></div>
-            <div className="movie-ename text-ellipsis"></div>
-            <div className="movie-score text-ellipsis"></div>
-            <div className="movie-category text-ellipsis"></div>
-            <div className="movie-content-row"></div>
-            <div className="movie-content-row"></div>
+            <div className="movie-name text-ellipsis">{ detail.nm }</div>
+            <div className="movie-score text-ellipsis">{ detail.sc }</div>
+            <div className="movie-category text-ellipsis">
+              <span className="movie-cat">{ detail.cat }</span>
+            </div>
+            <div className="movie-content-row">{ detail.ver }</div>
+            <div className="movie-content-row">{ detail.rt }</div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   )
 }

@@ -9,9 +9,17 @@ export interface MovieListProps {
   push: Function;
 }
 
+
 export const MovieList = (props: MovieListProps) => {
 
+  
   const { movies, push } = props;
+
+  const toCinema = (event, id) => {
+    event.stopPropagation();
+    push(`/movie/${id}/cinema`);
+  }
+
   const cards = movies.map((item, index) => (
     <div className='movie' key={index} onClick={() => push(`/detail/${item.id}`)}>
       <div className='movie-cover' style={{ backgroundImage: `url(${item.img})` }}></div>
@@ -22,7 +30,7 @@ export const MovieList = (props: MovieListProps) => {
         <p className='movie-content'>{item.scm}</p>
       </div>
       <p className='movie-showInfo'>{item.showInfo}</p>
-      <Button type="primary" inline size="small" className='buy-btn'>购票</Button>
+      <Button type="primary" inline size="small" className='buy-btn' onClick={(e) => toCinema(e, item.id)}>购票</Button>
     </div>
   ));
 

@@ -1,4 +1,17 @@
 #detail-page
+    section 
+        background-color: #fff
+    img
+        width: 100%
+    p
+        margin: 0
+
+    h3
+        border-bottom: 1px solid #e5e5e5
+        margin: 0
+        color: #666
+        font-size: .3rem
+        padding: .2rem .3rem
     .movie
         color: #fff
         padding: .3rem
@@ -22,79 +35,179 @@
         background-image: gray
         background-repeat: no-repeat
         background-position-y: 40%
+    .movie-filter
+        top: 0
+        left: 0
+        right: 0
+        bottom: 0
+        width: 100%
+        position: absolute
+        background-color: #40454d
+        opacity: .55
+    .movie-container
+        z-index: 1
+        position: relative
+    .movie-cover
+        float: left
+        width: 2.14rem
+        height: 3rem
+        filter: blur(0)
+        font-style: initial
+        -webkit-filter: blur(0)
+        border: solid 1px #f0f2f3
+        position: relative
+        background: #c1c1c1 url(data:image/pngbase64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAwFBMV…mytghhgpB+Cgix7I1gjStOqq8c5jhkmLqiJ0McuoXq6j92ZWbxiZAstgAAAABJRU5ErkJggg==) no-repeat center center
+      
+    .movie-content
+        z-index: 2
+        padding-left: 2.45rem
+        height: 3rem
+    .movie-name
+        font-size: .34rem
+        margin-top: .06rem
+        margin-bottom: .08rem
+    .movie-ename
+        font-size: .22rem
+        opacity: .8
+        height: .22rem
+        margin-bottom: .12rem
+    .text-ellipsis
+        text-overflow: ellipsis
+        white-space: nowrap
+        overflow: hidde
+    .movie-score
+        color: #ff9900
+        font-size: .32rem
+        margin-bottom: .12rem
+    .movie-category
+        font-size: .24rem
+        margin-bottom: .12rem
+    .movie-cat
+        opacity: .7
+        vertical-align: middle
+    .movie-content-row
+        font-size: .24rem
+        opacity: .7
+        margin-bottom: .12rem
+    .movie-content-row
+        font-size: .24rem
+        opacity: .7
+        margin-bottom: .12rem
 
-// .movie-filter {
-//   top: 0;
-//   left: 0;
-//   right: 0;
-//   bottom: 0;
-//   width: 100%;
-//   position: absolute;
-//   background-color: #40454d;
-//   opacity: .55;
-// }
+    
 
-// .movie-container {
-//     z-index: 1;
-//     position: relative;
-// }
+    .section-seperate
+        border-top: 1px solid #e5e5e5
+        border-bottom: 1px solid #e5e5e5
+        margin: .2rem 0
+    
+    .section-expander
+        position: relative
+        margin-top: 0 !important
+        padding: .3rem .3rem .3rem .3rem
 
-// .movie-cover {
-//     float: left;
-//     width: 2.14rem;
-//     height: 3rem;
-//     filter: blur(0);
-//     font-style: initial;
-//     -webkit-filter: blur(0);
-//     border: solid 1px #f0f2f3;
-//     position: relative;
-//     background: #c1c1c1 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAwFBMV…mytghhgpB+Cgix7I1gjStOqq8c5jhkmLqiJ0McuoXq6j92ZWbxiZAstgAAAABJRU5ErkJggg==) no-repeat center center;
-// }
+    .text-expander-content
+        margin: 0
+        line-height: .4rem
+        text-overflow: ellipsis
+        overflow: hidden
+    .btn
+        margin: 0 0 .2rem
+        cursor: pointer
+        font-size: .3rem
+        text-align: center
+        border-radius: 4px
+        line-height: 1
+        background: #e54847
+        color: #fff
+        text-decoration: none
+    .btn-block
+        display: block
+        padding: .2rem
 
-// .movie-content {
-//     z-index: 2;
-//     padding-left: 2.45rem;
-//     height: 3rem;
-// }
+    .movie-stages
+        padding: 0 0 .3rem 0
+        margin: 0
+        overflow-x: scroll
+        white-space: nowrap
 
-// .movie-name {
-//     font-size: .34rem;
-//     margin-top: .06rem;
-//     margin-bottom: .08rem;
-// }
+    .stage-img-container
+        list-style: none
+        display: inline-block
+        overflow: hidden
+        width: 1.8rem
+        height: 1.4rem
+        margin-left: .1rem
 
-// .movie-ename {
-//     font-size: .22rem;
-//     opacity: .8;
-//     height: .22rem;
-//     margin-bottom: .12rem;
-// }
+    .stage-img-container img
+        width: 1.8rem
+        height: 1.4rem
+        background-size: .8rem
 
-// .text-ellipsis {
-//     text-overflow: ellipsis;
-//     white-space: nowrap;
-//     overflow: hidden;
-// }
+    .noneBg
+        background: none
 
-// .movie-score {
-//     color: #ff9900;
-//     font-size: .32rem;
-//     margin-bottom: .12rem;
-// }
+    .section-movie-comment
+        padding: 0
+    
+    .list-view-styled
+        margin-left: .3rem
+    .list-view
+        margin: 0
+        padding: 0
+        list-style: none
+    
+    .list-view-item
+        list-style: none
+        font-size: .28rem
+        padding: .15rem .25rem
+        background-color: #fff
+        border-bottom: solid #e5e5e5 1px
+    .comment
+        padding: 0 .03rem
+    .comment header
 
-// .movie-category {
-//     font-size: .24rem;
-//     margin-bottom: .12rem;
-// }
-
-// .movie-content-row {
-//     font-size: .24rem;
-//     opacity: .7;
-//     margin-bottom: .12rem;
-// }
-
-// .movie-content-row {
-//     font-size: .24rem;
-//     opacity: .7;
-//     margin-bottom: .12rem;
-// }*/
+    .comment section
+        background-color: #fff
+        margin-top: .1rem
+        margin-bottom: .1rem
+        border-bottom: none !important
+        user-select: text
+        -ms-user-select: text
+        -moz-user-select: text
+        -webkit-user-select: text
+    .comment 
+        footer
+            margin-top: .2rem
+            margin-bottom: .2rem
+            line-height: .5rem
+            vertical-align: middle
+            .img
+                float: left
+                width: .58rem
+                border-radius: 50%
+                display: inline-block
+        .nick
+            display: inline-block
+            max-width: 3rem
+            color: #999
+            font-size: .25rem
+            font-style: normal
+            margin-left: .2rem
+            vertical-align: inherit
+            text-overflow: ellipsis
+            overflow: hidden
+            white-space: nowrap
+        .rating
+            font-size: .24rem
+            display: inline-block
+            line-height: 1
+            margin-right: .1rem
+            img
+                width: .24rem
+                height: .24rem
+        .timeago
+            color: #999
+            position: relative
+            font-size: .24rem
+            margin-left: .1rem 

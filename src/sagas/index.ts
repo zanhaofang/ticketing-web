@@ -29,7 +29,6 @@ function* loadMovieList() {
     const moveListAction = actions.movieList;
     const getMovieList = getData.bind(null, moveListAction, api.getMovieList);
     yield call(getMovieList, 'movieList');
-    
   }
 }
 
@@ -38,12 +37,47 @@ function* loadMovieList() {
  */
 function* loadMovieDetail(id: number) {
   const data = yield select(selectors.getMovieDetail);
-  if (data == null) {
-    const movieDetailAction = actions.movieDetail;
-    const getMovieDetail = getData.bind(null, movieDetailAction, api.getMovieDetail);
-    yield call(getMovieDetail, 'movieDetail');
+  const movieDetailAction = actions.movieDetail;
+  const getMovieDetail = getData.bind(null, movieDetailAction, api.getMovieDetail);
+  yield call(getMovieDetail, 'movieDetail', { id });
+}
+
+/**
+ * 获取所有区域列表
+ */
+function* loadAreaList() {
+  // cache
+  const data = yield select(selectors.getAreaList);
+  if (data.length <= 0) {
+    const areaListAction = actions.areaList;
+    const getAreaList = getData.bind(null, areaListAction, api.getAreaList);
+    yield call(getAreaList, 'areaList');
   }
 }
+
+/**
+ * 获取所有影院列表
+ */
+function* loadCinemaList() {
+  // cache
+  const data = yield select(selectors.getCinemaList);
+  if (data.length <= 0) {
+    const cinemaListAction = actions.cinemaList;
+    const getCinemaList = getData.bind(null, cinemaListAction, api.getCinemaList);
+    yield call(getCinemaList, 'cinemaList');
+  }
+}
+
+/**
+ * 电影排期
+ */
+function* loadShowInfo(mid: number, cid: number) {
+  const data = yield select(selectors.getShowInfo);
+  const showInfoAction = actions.showInfo;
+  const getShowInfo = getData.bind(null, showInfoAction, api.getShowInfo);
+  yield call(getShowInfo, 'showInfo', { mid, cid });
+}
+
 
 
 /******************************* WATCHERS *************************************/
@@ -63,10 +97,35 @@ function* watchLoadMovieDetail() {
   }
 }
 
+function* watchLoadAreaList() {
+  while(true) {
+    yield take(actions.LOAD_AREA_LIST);
+    yield fork(loadAreaList);
+  }
+}
+
+function* watchLoadCinemaList() {
+  while(true) {
+    yield take(actions.LOAD_CINEMA_LIST);
+    yield fork(loadCinemaList);
+  }
+}
+
+
+function* watchLoadShowInfo() {
+  while(true) {
+    const { mid, cid } = yield take(actions.LOAD_SHOW_INFO);
+    yield fork(loadShowInfo, mid, cid);
+  }
+}
+
 export default function* root() {
   yield [
     fork(watchLoadMovieList),
-    fork(watchLoadMovieDetail)
+    fork(watchLoadMovieDetail),
+    fork(watchLoadAreaList),
+    fork(watchLoadCinemaList),
+    fork(watchLoadShowInfo)
   ]
 }
 

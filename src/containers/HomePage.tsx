@@ -1,32 +1,68 @@
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import * as React from 'react';
-import { NavBar, SearchBar } from 'antd-mobile';
-import { loadMovieList } from '../actions';
+import { NavBar, Drawer, List, SearchBar } from 'antd-mobile';
+import { loadMovieList, loadAreaList } from '../actions';
 import { MovieList, MovieCarousel } from '../components/home';
 
 
 export interface HomePageProps {
-  carouselImages: Array<string>;
-  movieList: Array<any>;
-  loadMovieList: Function;
-  push: Function;
+  carouselImages: Array<string>,
+  movieList: Array<any>,
+  areaList: Array<any>,
+  loadMovieList: Function,
+  loadAreaList: Function,
+  push: Function
 }
 
 class HomePage extends React.Component<HomePageProps, any> {
 
+  state = {
+    open: false,
+    position: 'left',
+  }
+
+  onOpenChange = (...args) => {
+    this.setState({ open: !this.state.open });
+  }
+
   componentDidMount() {
     this.props.loadMovieList();
+    this.props.loadAreaList();
   }
 
   render() {
-    const { carouselImages, movieList } = this.props;
+    const { carouselImages, movieList, areaList, push } = this.props;
+
+    const sidebar = (
+      <List>
+        {areaList.map((item, index) => {
+          return (<List.Item key={index}>{item.nm}</List.Item>);
+        })}
+      </List>
+    );
+
+    const drawerProps = {
+      open: this.state.open,
+      position: this.state.position,
+      onOpenChange: this.onOpenChange,
+    };
+    
     return (
       <div>
-        <NavBar iconName={null} leftContent="城市" onLeftClick={() => console.log('onLeftClick')}>热映</NavBar>
-        <SearchBar className="tk-searchbar" placeholder="搜索" style={{marginBottom: 0}}/>
-        <MovieCarousel carouselImages={carouselImages}></MovieCarousel>
-        <MovieList movies={movieList} push={this.props.push} />
+        <NavBar iconName={null} leftContent="番禺区" onLeftClick={ this.onOpenChange }>热映</NavBar>
+        <Drawer
+          className="my-drawer"
+          style={{ minHeight: document.documentElement.clientHeight, marginTop: 90 }}
+          dragHandleStyle={{ display: 'none' }}
+          sidebar={sidebar}
+          {...drawerProps}
+        >
+          <SearchBar className="tk-searchbar" placeholder="搜索" style={{marginBottom: 0}}/>
+          <MovieCarousel carouselImages={carouselImages}></MovieCarousel>
+          <MovieList movies={movieList} push={push} />
+        </Drawer>
+        
       </div>
     )
   }
@@ -35,13 +71,14 @@ class HomePage extends React.Component<HomePageProps, any> {
 
 function mapStateToProps(state) {
   const {
-    data: { carouselImages, movieList }
+    data: { carouselImages, movieList, areaList }
   } = state
 
   return {
     carouselImages,
-    movieList
+    movieList,
+    areaList
   }
 }
 
-export default connect(mapStateToProps, { loadMovieList, push })(HomePage);
+export default connect(mapStateToProps, { loadMovieList, loadAreaList, push })(HomePage);
