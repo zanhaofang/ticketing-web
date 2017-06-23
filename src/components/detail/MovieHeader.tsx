@@ -7,7 +7,6 @@ export interface MovieHeaderProps {
 
 export const MovieHeader = (props: MovieHeaderProps) => {
   const { detail } = props;
-
   return (
     <section className="movie-header">
       <div className="movie">
