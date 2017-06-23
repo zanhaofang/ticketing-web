@@ -1,36 +1,32 @@
 import { connect } from 'react-redux';
 import { goBack, push } from 'react-router-redux';
 import { NavBar } from 'antd-mobile';
-import { loadCinemaList, loadMovieDetail } from '../actions';
-import { CinemaList } from '../components/cinema';
-
+import { loadMovieDetail } from '../actions';
 
 import * as React from 'react';
-import '../components/cinema/styles/index.sass';
+import '../components/show/styles/index.sass';
 
-export interface CinemaPageProps {
-  loadCinemaList: Function,
+export interface ShowPageProps {
   loadMovieDetail: Function,
   goBack: Function,
   push: Function,
   mid: number,
+  cid: number,
   movieDetail: any,
-  cinemaList: Array<any>
+  cinemaDetail: any
 }
 
-class CinemaPage extends React.Component<CinemaPageProps, any> {
+class ShowPage extends React.Component<ShowPageProps, any> {
 
   componentDidMount() {
-    this.props.loadCinemaList();
     this.props.loadMovieDetail(this.props.mid);
   }
 
   render() {
-    const { cinemaList, movieDetail, mid } = this.props;
+    const { movieDetail, mid } = this.props;
     return (
       <div id="cinema-page">
         <NavBar iconName="left" onLeftClick={() => this.props.goBack()}>{movieDetail ? movieDetail.detail.nm : ""}</NavBar>
-        <CinemaList cinemas={cinemaList} push={this.props.push} mid={mid}/>
       </div>
     )
   }

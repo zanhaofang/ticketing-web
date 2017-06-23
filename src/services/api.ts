@@ -11,3 +11,21 @@ export const getMovieDetail = (params) => {
     url: `api/movie/${params.id}`
   })
 }
+
+export const getAreaList = (params) => {
+  return request({
+    url: `api/area`
+  })
+}
+
+export const getCinemaList = (params) => {
+  return request({
+    url: `api/cinema`
+  })
+}
+
+export const getShow= (params) => {
+  return request({
+    url: `api/show?cinemaId=${params.cid}&movieId=${params.mid}`
+  })
+}

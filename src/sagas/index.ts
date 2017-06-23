@@ -40,6 +40,29 @@ function* loadMovieDetail(id: number) {
   yield call(getMovieDetail, 'movieDetail', { id });
 }
 
+/**
+ * 获取所有区域列表
+ */
+function* loadAreaList() {
+  // cache
+  const data = yield select(selectors.getAreaList);
+  const areaListAction = actions.areaList;
+  const getAreaList = getData.bind(null, areaListAction, api.getAreaList);
+  yield call(getAreaList, 'areaList');
+}
+
+/**
+ * 获取所有区域列表
+ */
+function* loadCinemaList() {
+  // cache
+  const data = yield select(selectors.getCinemaList);
+  const cinemaListAction = actions.cinemaList;
+  const getCinemaList = getData.bind(null, cinemaListAction, api.getCinemaList);
+  yield call(getCinemaList, 'cinemaList');
+}
+
+
 
 /******************************* WATCHERS *************************************/
 
@@ -58,10 +81,26 @@ function* watchLoadMovieDetail() {
   }
 }
 
+function* watchLoadAreaList() {
+  while(true) {
+    yield take(actions.LOAD_AREA_LIST);
+    yield fork(loadAreaList);
+  }
+}
+
+function* watchLoadCinemaList() {
+  while(true) {
+    yield take(actions.LOAD_CINEMA_LIST);
+    yield fork(loadCinemaList);
+  }
+}
+
 export default function* root() {
   yield [
     fork(watchLoadMovieList),
-    fork(watchLoadMovieDetail)
+    fork(watchLoadMovieDetail),
+    fork(watchLoadAreaList),
+    fork(watchLoadCinemaList)
   ]
 }
 

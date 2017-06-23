@@ -53,3 +53,31 @@ export const movieDetail = {
   success: (params, response, field) => action(MOVIE_DETAIL.SUCCESS, { params, response, field }),
   failure: (params, error) => action(MOVIE_DETAIL.FAILURE, { params, error }),
 }
+
+// 获取全部区域列表
+export const LOAD_AREA_LIST: string = 'LOAD_AREA_LIST';
+
+export const loadAreaList = () => action(LOAD_AREA_LIST);
+
+const AREA_LIST: RequestTypes = createRequestTypes('AREA_LIST');
+
+export const areaList = {
+  request: (params) => action(AREA_LIST.REQUEST, { params }),
+  success: (params, response, field) => action(AREA_LIST.SUCCESS, { params, response, field }),
+  failure: (params, error) => action(AREA_LIST.FAILURE, { params, error }),
+}
+
+// 获取全部影院信息
+export const LOAD_CINEMA_LIST: string = 'LOAD_CINEMA_LIST';
+
+export const loadCinemaList = () => action(LOAD_CINEMA_LIST);
+
+const CINEMA_LIST: RequestTypes = createRequestTypes('CINEMA_LIST');
+
+export const cinemaList = {
+  request: (params) => action(CINEMA_LIST.REQUEST, {params}),
+  success: (params, response, field) => action(CINEMA_LIST.SUCCESS, { params, response, field }),
+  failure: (params, error) => action(CINEMA_LIST.FAILURE, { params, error }),
+}
+
+// 获取电影排期

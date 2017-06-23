@@ -4,6 +4,8 @@ import { combineReducers } from 'redux';
 const defaultDataState = {
   carouselImages: ['AiyWuByWklrrUDlFignR', 'TekJlZRVCjLFexlOCuWn'],
   movieList: [],
+  areaList: [],
+  cinemaList: [],
   movieDetail: null,
 }
 

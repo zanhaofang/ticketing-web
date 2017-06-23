@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { goBack } from 'react-router-redux';
+import { goBack, push } from 'react-router-redux';
 import { NavBar } from 'antd-mobile';
 import { loadMovieDetail } from '../actions';
 import { MovieHeader, SectionExpander, SectionMedia, SectionMovieComment } from '../components/detail/';
@@ -11,6 +11,7 @@ export interface DetailPageProps {
   id: number,
   loadMovieDetail: Function,
   goBack: Function,
+  push: Function,
   movieDetail: any
 }
 
@@ -26,7 +27,7 @@ class DetailPage extends React.Component<DetailPageProps, any> {
       <div id="detail-page">
         <NavBar iconName="left" onLeftClick={() => this.props.goBack()}>{ movieDetail ? movieDetail.detail.nm : "" }</NavBar>
         <MovieHeader detail={ movieDetail ? movieDetail.detail : {}} />
-        <SectionExpander dra={ movieDetail ? movieDetail.detail.dra : "暂无介绍"} />
+        <SectionExpander detail={ movieDetail ? movieDetail.detail : {}} push={this.props.push}/>
         <SectionMedia photos={ movieDetail ? movieDetail.photos : [] }/>
         <SectionMovieComment comments={ movieDetail ? movieDetail.comments : [] }/>
       </div>
@@ -47,4 +48,4 @@ function mapStateToProps(state, ownProps) {
   }
 }
 
-export default connect(mapStateToProps, { loadMovieDetail, goBack })(DetailPage);
+export default connect(mapStateToProps, { loadMovieDetail, goBack, push })(DetailPage);
