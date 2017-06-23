@@ -8,6 +8,6 @@ export const getMovieList = (params) => {
 
 export const getMovieDetail = (params) => {
   return request({
-    url: `api/movie/${params.movieId}`
+    url: `api/movie/${params.id}`
   })
 }

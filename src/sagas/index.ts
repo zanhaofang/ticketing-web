@@ -25,12 +25,9 @@ function* getData(data, apiFn, field: string, params = {}) {
 function* loadMovieList() {
   // cache
   const data = yield select(selectors.getMovieList);
-  if (data.length <= 0) {
-    const moveListAction = actions.movieList;
-    const getMovieList = getData.bind(null, moveListAction, api.getMovieList);
-    yield call(getMovieList, 'movieList');
-    
-  }
+  const moveListAction = actions.movieList;
+  const getMovieList = getData.bind(null, moveListAction, api.getMovieList);
+  yield call(getMovieList, 'movieList');
 }
 
 /**
@@ -38,11 +35,9 @@ function* loadMovieList() {
  */
 function* loadMovieDetail(id: number) {
   const data = yield select(selectors.getMovieDetail);
-  if (data == null) {
-    const movieDetailAction = actions.movieDetail;
-    const getMovieDetail = getData.bind(null, movieDetailAction, api.getMovieDetail);
-    yield call(getMovieDetail, 'movieDetail');
-  }
+  const movieDetailAction = actions.movieDetail;
+  const getMovieDetail = getData.bind(null, movieDetailAction, api.getMovieDetail);
+  yield call(getMovieDetail, 'movieDetail', { id });
 }
 
 

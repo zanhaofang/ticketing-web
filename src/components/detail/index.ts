@@ -1,4 +1,11 @@
+import { MovieHeader } from './MovieHeader';
+import { SectionExpander } from './SectionExpander';
+import { SectionMedia } from './SectionMedia';
+import { SectionMovieComment } from './SectionMovieComment';
+
 export {
-  Detail,
-  DetailProps
-} from './Detail';
+  MovieHeader,
+  SectionExpander,
+  SectionMedia,
+  SectionMovieComment
+}

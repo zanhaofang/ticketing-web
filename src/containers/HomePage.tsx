@@ -20,13 +20,13 @@ class HomePage extends React.Component<HomePageProps, any> {
   }
 
   render() {
-    const { carouselImages, movieList } = this.props;
+    const { carouselImages, movieList, push } = this.props;
     return (
       <div>
         <NavBar iconName={null} leftContent="城市" onLeftClick={() => console.log('onLeftClick')}>热映</NavBar>
         <SearchBar className="tk-searchbar" placeholder="搜索" style={{marginBottom: 0}}/>
         <MovieCarousel carouselImages={carouselImages}></MovieCarousel>
-        <MovieList movies={movieList} push={this.props.push} />
+        <MovieList movies={movieList} push={push} />
       </div>
     )
   }
