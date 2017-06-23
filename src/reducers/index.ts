@@ -6,6 +6,7 @@ const defaultDataState = {
   movieList: [],
   areaList: [],
   cinemaList: [],
+  showInfo: null,
   movieDetail: null,
 }
 

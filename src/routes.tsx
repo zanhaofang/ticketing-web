@@ -5,6 +5,7 @@ import { ConnectedRouter, push } from 'react-router-redux'
 import HomePage from './containers/HomePage';
 import DetailPage from './containers/DetailPage';
 import CinemaPage from './containers/CinemaPage';
+import ShowPage from './containers/ShowPage';
 
 export interface RouterProps {
   history: any
@@ -18,6 +19,7 @@ export const App = (props: RouterProps) => {
         <Route exact path="/" component={HomePage} />
         <Route path="/detail/:id" component={DetailPage} />
         <Route path="/movie/:movieId/cinema" component={CinemaPage} />
+        <Route path="/show/movie/:movieId/cinema/:cinemaId" component={ShowPage} />
       </div>
     </ConnectedRouter >
   )

@@ -81,3 +81,14 @@ export const cinemaList = {
 }
 
 // 获取电影排期
+export const LOAD_SHOW_INFO: string = 'LOAD_SHOW_INFO';
+
+export const loadShowInfo = (mid: number, cid:number) => action(LOAD_SHOW_INFO, {mid, cid});
+
+const SHOW_INFO: RequestTypes = createRequestTypes('SHOW_INFO');
+
+export const showInfo = {
+  request: (params) => action(SHOW_INFO.REQUEST, {params}),
+  success: (params, response, field) => action(SHOW_INFO.SUCCESS, { params, response, field }),
+  failure: (params, error) => action(SHOW_INFO.FAILURE, { params, error }),
+}

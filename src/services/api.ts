@@ -24,7 +24,7 @@ export const getCinemaList = (params) => {
   })
 }
 
-export const getShow= (params) => {
+export const getShowInfo = (params) => {
   return request({
     url: `api/show?cinemaId=${params.cid}&movieId=${params.mid}`
   })

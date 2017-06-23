@@ -13,7 +13,7 @@ export const CinemaList = (props: CinemaListProps) => {
   const { cinemas, push, mid } = props;
 
   const toShow = (cid: number) => {
-    push(`/movie/${mid}/cinema/${cid}`);
+    push(`/show/movie/${mid}/cinema/${cid}`);
   }
 
   const cards = cinemas.map((item, index) => (
