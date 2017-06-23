@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { goBack, push } from 'react-router-redux';
 import { MovieHeader } from '../components/detail';
+import { TimeLine } from '../components/show';
 import { NavBar } from 'antd-mobile';
 import { loadMovieDetail, loadShowInfo, loadCinemaList } from '../actions';
 
@@ -17,14 +18,11 @@ export interface ShowPageProps {
   cid: number,
   movieDetail: any,
   showInfo: any,
-  cinemaList: any
+  cinemaList: Array<any>
 }
 
 class ShowPage extends React.Component<ShowPageProps, any> {
 
-  state = {
-    cinema: null,
-  }
 
   componentDidMount() {
     this.props.loadMovieDetail(this.props.mid);
@@ -32,33 +30,31 @@ class ShowPage extends React.Component<ShowPageProps, any> {
     this.props.loadShowInfo(this.props.mid, this.props.cid);
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   if (nextProps.cinemaList.length > 0) {
-  //     for (let i = 0; i< nextProps.cinemaList.length; ++i) {
-  //       if (nextProps.cinemaList[i].id == this.props.cid) {
-  //         this.setState({cinema: nextProps.cinemaList[i]});
-  //         break;
-  //       }
-  //     }
-  //   }
-
-  //   this.setState({
-  //       cinema: nextProps.text
-  //   });
-  // }
+  getCinemaById(cinemaList: Array<any>, cid: number) {
+    if (cinemaList.length > 0) {
+      for (let i = 0; i < cinemaList.length; ++i) {
+        if (cinemaList[i].id == cid) {
+          return cinemaList[i];
+        }
+      }
+    } else {
+      return null;
+    }
+  }
 
   render() {
     const { movieDetail, showInfo, cinemaList } = this.props;
-    
+    const cinema = this.getCinemaById(cinemaList, this.props.cid);
     
     return (
       <div id="show-page">
-        <NavBar iconName="left" onLeftClick={() => this.props.goBack()}>{this.state.cinema ? this.state.cinema.nm : ""}</NavBar>
-        {/*<div className="cinema-info">
-          <div className="cinema-name">{ this.state.cinema ? this.state.cinema.nm : "" }</div>
-          <p>{ this.state.cinema ? this.state.cinema.addr : ""}</p>
-        </div>*/}
-        {/*<MovieHeader detail={movieDetail ? movieDetail.detail : {}}/>*/}
+        <NavBar iconName="left" onLeftClick={() => this.props.goBack()}>{cinema ? cinema.nm : ""}</NavBar>
+        <div className="cinema-info">
+          <div className="cinema-name">{ cinema ? cinema.nm : "" }</div>
+          <p>{ cinema ? cinema.addr : ""}</p>
+        </div>
+        <MovieHeader detail={movieDetail ? movieDetail.detail : {}}/>
+        <TimeLine showInfo={showInfo}/>
       </div>
     )
   }
@@ -68,12 +64,13 @@ class ShowPage extends React.Component<ShowPageProps, any> {
 function mapStateToProps(state, ownProps) {
 
   const {
-    data: { cinemaList, showInfo }
+    data: { cinemaList, showInfo, movieDetail }
   } = state
 
   return {
     cinemaList,
     showInfo,
+    movieDetail,
     mid: ownProps.match.params.movieId,
     cid: ownProps.match.params.cinemaId,
   }
